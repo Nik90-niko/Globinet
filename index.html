@@ -48,3 +48,36 @@ footer{background:#071b38;color:white;text-align:center;padding:25px}
 <script>
 const SUPABASE_URL = "https://dvaqoqypcjqvwwtafbcv.supabase.co";
 const SUPABASE_KEY = "sb_publishable_erBVUcD52VFeCfDM2mdHOA_uM_uyjDa";
+const db = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+async function loadPackages() {
+  const list = document.getElementById("packageList");
+
+  const { data, error } = await db
+    .from("packages")
+    .select("name, description, price, currency")
+    .eq("active", true);
+
+  if (error) {
+    list.innerText = "Unable to load packages.";
+    return;
+  }
+
+  if (!data.length) {
+    list.innerText = "No packages available yet.";
+    return;
+  }
+
+  list.innerHTML = data.map(p => `
+    <div class="card">
+      <h3>${p.name}</h3>
+      <p>${p.description || ""}</p>
+      <strong>${p.currency} ${p.price}</strong>
+    </div>
+  `).join("");
+}
+
+loadPackages();
+</script>
+</body>
+</html>
