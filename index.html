@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Globinet - One World. One Connection.</title>
+
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f4f6fa;color:#17243a}
+header{background:#071b38;color:white;padding:20px}
+.logo{font-size:27px;font-weight:bold;color:#ff8b22}
+nav{margin-top:15px}
+nav a{color:white;text-decoration:none;margin-right:15px}
+.hero{background:#09264d;color:white;padding:55px 20px;text-align:center}
+.hero h1{font-size:36px}
+.hero span{color:#ff922b}
+button{background:#ff8b22;color:white;border:0;padding:13px 20px;border-radius:7px;cursor:pointer}
+section{padding:25px 18px}
+.card{background:white;padding:20px;margin:12px 0;border-radius:10px;box-shadow:0 2px 8px #ddd}
+input{width:100%;padding:13px;margin:8px 0;border:1px solid #ccc;border-radius:6px}
+footer{background:#071b38;color:white;text-align:center;padding:25px}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="logo">GLOBINET</div>
+<p>One World. One Connection.</p>
+<nav>
+<a href="#home">Home</a>
+<a href="#packages">Packages</a>
+<a href="#account">My Account</a>
+</nav>
+</header>
+
+<div class="hero" id="home">
+<h1>Connect to the <span>World</span></h1>
+<p>Discover internet packages and connectivity services.</p>
+<button onclick="document.getElementById('packages').scrollIntoView()">Explore Packages</button>
+</div>
+
+<section id="packages">
+<h2>Internet Packages</h2>
+<div id="packageList">Loading packages...</div>
+</section>
