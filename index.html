@@ -3,81 +3,307 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Globinet - One World. One Connection.</title>
+<title>GLOBINET - One Planet. One Connection.</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
-*{box-sizing:border-box}
-body{margin:0;font-family:Arial,sans-serif;background:#f4f6fa;color:#17243a}
-header{background:#071b38;color:white;padding:20px}
-.logo{font-size:27px;font-weight:bold;color:#ff8b22}
-nav{margin-top:15px}
-nav a{color:white;text-decoration:none;margin-right:15px}
-.hero{background:#09264d;color:white;padding:55px 20px;text-align:center}
-.hero h1{font-size:36px}
-.hero span{color:#ff922b}
-button{background:#ff8b22;color:white;border:0;padding:13px 20px;border-radius:7px;cursor:pointer}
-section{padding:25px 18px}
-.card{background:white;padding:20px;margin:12px 0;border-radius:10px;box-shadow:0 2px 8px #ddd}
-input{width:100%;padding:13px;margin:8px 0;border:1px solid #ccc;border-radius:6px}
-footer{background:#071b38;color:white;text-align:center;padding:25px}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #f4f7fb;
+    color: #17243a;
+}
+
+header {
+    background: #071a35;
+    color: white;
+    padding: 18px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: bold;
+    color: #ff941f;
+}
+
+nav {
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+button {
+    background: #ff941f;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 7px;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.hero {
+    background: linear-gradient(120deg,#071a35,#123f70);
+    color: white;
+    padding: 85px 7%;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 42px;
+    margin-bottom: 18px;
+}
+
+.hero p {
+    font-size: 17px;
+    line-height: 1.7;
+    margin-bottom: 25px;
+}
+
+section {
+    padding: 55px 6%;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.section-title h2 {
+    font-size: 29px;
+    color: #071a35;
+}
+
+.packages {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+    gap: 20px;
+}
+
+.card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 3px 15px rgba(0,0,0,.07);
+    text-align: center;
+}
+
+.card h3 {
+    color: #071a35;
+    margin-bottom: 15px;
+}
+
+.price {
+    color: #ff941f;
+    font-size: 27px;
+    font-weight: bold;
+    margin: 18px 0;
+}
+
+.card p {
+    margin: 12px 0;
+    color: #667085;
+}
+
+.status {
+    text-align: center;
+    padding: 15px;
+    color: #667085;
+}
+
+.features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+    gap: 20px;
+}
+
+.feature {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.feature h3 {
+    margin-bottom: 12px;
+}
+
+.form-box {
+    max-width: 450px;
+    margin: 20px auto;
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+}
+
+input {
+    width: 100%;
+    padding: 13px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 7px;
+}
+
+footer {
+    background: #071a35;
+    color: white;
+    text-align: center;
+    padding: 30px;
+}
+
+.hidden {
+    display: none;
+}
+
+.message {
+    margin: 12px 0;
+    color: #d35400;
+    font-size: 14px;
+}
+
+@media(max-width:600px) {
+    .hero h1 {
+        font-size: 31px;
+    }
+
+    header {
+        justify-content: center;
+    }
+
+    nav {
+        justify-content: center;
+    }
+}
 </style>
 </head>
 
 <body>
 
 <header>
-<div class="logo">GLOBINET</div>
-<p>One World. One Connection.</p>
-<nav>
-<a href="#home">Home</a>
-<a href="#packages">Packages</a>
-<a href="#account">My Account</a>
-</nav>
+    <div class="logo">🌍 GLOBINET</div>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#packages">Packages</a>
+        <a href="#services">Services</a>
+        <a href="#account">Account</a>
+    </nav>
+
+    <button onclick="showAccount()">Login / Sign Up</button>
 </header>
 
 <div class="hero" id="home">
-<h1>Connect to the <span>World</span></h1>
-<p>Discover internet packages and connectivity services.</p>
-<button onclick="document.getElementById('packages').scrollIntoView()">Explore Packages</button>
+    <h1>One Planet. One Connection.</h1>
+
+    <p>
+        Discover internet packages and connectivity
+        solutions through GLOBINET.
+        Your connection starts here.
+    </p>
+
+    <button onclick="document.getElementById('packages').scrollIntoView({behavior:'smooth'})">
+        Explore Internet Packages
+    </button>
 </div>
 
 <section id="packages">
-<h2>Internet Packages</h2>
-<div id="packageList">Loading packages...</div>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script>
-const SUPABASE_URL = "https://dvaqoqypcjqvwwtafbcv.supabase.co";
-const SUPABASE_KEY = "sb_publishable_erBVUcD52VFeCfDM2mdHOA_uM_uyjDa";
 
-const db = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-async function loadPackages() {
-  const list = document.getElementById("packageList");
-
-  const { data, error } = await db
-    .from("packages")
-    .select("name, description, price, currency")
-    .eq("active", true);
-
-  if (error) {
-    list.innerText = "Unable to load packages.";
-    return;
-  }
-
-  if (!data.length) {
-    list.innerText = "No packages available yet.";
-    return;
-  }
-
-  list.innerHTML = data.map(p => `
-    <div class="card">
-      <h3>${p.name}</h3>
-      <p>${p.description || ""}</p>
-      <strong>${p.currency} ${p.price}</strong>
+    <div class="section-title">
+        <h2>Internet Packages</h2>
+        <p>Explore available internet offers.</p>
     </div>
-  `).join("");
-}
 
-loadPackages();
-</script>
-</body>
-</html>
+    <div id="packageStatus" class="status">
+        Loading packages...
+    </div>
+
+    <div class="packages" id="packageList"></div>
+
+</section>
+
+<section id="services">
+
+    <div class="section-title">
+        <h2>Our Services</h2>
+    </div>
+
+    <div class="features">
+
+        <div class="feature">
+            <h3>🌐 Internet</h3>
+            <p>Discover internet connectivity offers.</p>
+        </div>
+
+        <div class="feature">
+            <h3>📡 WiFi</h3>
+            <p>Explore WiFi connectivity services.</p>
+        </div>
+
+        <div class="feature">
+            <h3>💳 Payments</h3>
+            <p>Prepare for convenient online payments.</p>
+        </div>
+
+        <div class="feature">
+            <h3>👤 Customer Account</h3>
+            <p>Manage your customer account.</p>
+        </div>
+
+    </div>
+
+</section>
+
+<section id="account">
+
+    <div class="section-title">
+        <h2>Customer Account</h2>
+    </div>
+
+    <div class="form-box">
+
+        <h3>Login / Create Account</h3>
+
+        <input type="email" id="email" placeholder="Email address">
+
+        <input type="password" id="password" placeholder="Password">
+
+        <button onclick="signup()">Create Account</button>
+
+        <button onclick="login()" style="background:#071a35">
+            Login
+        </button>
+
+        <button onclick="logout()" style="background:#777">
+            Logout
+        </button>
+
+        <p id="authMessage" class="message"></p>
+
+        <div id="dashboard" class="hidden">
+            <h3>My Dashboard</h3>
+            <p id="userEmail"></p>
+            <p>Welcome to GLOBINET.</p>
+        </div>
+
+    </div>
+
+</section>
+
+<footer>
